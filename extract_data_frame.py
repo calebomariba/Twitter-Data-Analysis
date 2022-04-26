@@ -19,7 +19,6 @@ def read_json(json_file: str)->list:
     
     
     return tweets_data
-
 class TweetExtractor:
     """
     this class extracts tweets it receives in purses them into  a pandas datframe
