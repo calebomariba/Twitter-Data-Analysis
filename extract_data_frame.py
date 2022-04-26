@@ -19,6 +19,7 @@ def read_json(json_file: str)->list:
     
     
     return tweets_data
+
 class TweetExtractor:
     """
     this class extracts tweets it receives in purses them into  a pandas datframe
@@ -28,3 +29,11 @@ class TweetExtractor:
         self.tweetslist = tweetslist
 
 
+    def find_statuses_count(self)->list:
+        """
+        finds the status counts for each tweet 
+        """
+        counts_of_statuses = []
+        for tweet in self.tweetslist:
+            counts_of_statuses.append(tweet['user']['statuses_count'])
+        return counts_of_statuses
