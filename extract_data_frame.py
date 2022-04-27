@@ -185,9 +185,9 @@ def find_full_text(self)->list:
         text = ''
     return text
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     
-    _, tweet_list = read_json("covid19.json")
+    _, tweet_list = read_json("data/Economic_Twitter_Data.json")
     
     tweet = TweetDfExtractor(tweet_list)
     df = tweet.get_tweet_df()
