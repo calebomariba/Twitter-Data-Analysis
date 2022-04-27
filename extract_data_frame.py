@@ -11,7 +11,7 @@ def read_json(json_file: str)->list:
     
     Returns
     -------
-    length of the json file and a list of json
+    length of the json file and a list of jsons
     """
     
     tweets_data = []
