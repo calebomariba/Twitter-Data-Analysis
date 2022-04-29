@@ -85,3 +85,19 @@ if st.checkbox("show perplexity analysis"):
     st.write(lda_model.log_perplexity(corpus))
 
 doc_lda = lda_model[corpus]
+
+
+############
+# sentiment analysis
+############
+
+sentiment = st.sidebar.radio('What sentiment to analyse?',
+('negative','positive','neutral'))
+
+cd  = [tweets_df.polarity < 0, tweets_df.polarity > 0,tweets_df.polarity == 0 ]
+choices = ['negative','positive','neutral']
+tweets_df['sentiment'] = np.select(cd,choices,default='zero')
+
+if sentiment:
+    sent_ = tweets_df[tweets_df['sentiment']==sentiment]
+    st.write(sent_)
