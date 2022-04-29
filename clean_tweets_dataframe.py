@@ -6,7 +6,8 @@ class CleanTweets:
     Returns:
     --------
     A dataframe
-    """exit
+    """
+
     def _init_(self, df:pd.DataFrame):
         self.df = df
         print('Automation in Action...!!!')
@@ -59,6 +60,6 @@ class CleanTweets:
         
         return self.df
 
-if _name_ == "_main_":
-    tweet_df = pd.read_csv("../data/covid19.csv")
+if __name__ == "_main_":
+    tweet_df = pd.read_csv("data/processed_tweet_data.csv")
     cleaner = CleanTweets(tweet_df)
