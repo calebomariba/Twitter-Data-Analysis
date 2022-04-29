@@ -3,32 +3,17 @@ import pandas as pd
 from textblob import TextBlob
 
 def read_json(json_file: str)->list:
-    """
-    json file reader to open and read json files into a list
-    Args:
-    -----
-    json_file: str - path of a json file
     
-    Returns
-    -------
-    length of the json file and a list of json
-    """
     
     tweets_data = []
     for tweets in open(json_file,'r'):
         tweets_data.append(json.loads(tweets))
     
     
-    return len(tweets_data), tweets_data
+    return tweets_data
     
-class TweetDfExtractor:
-    """
-    this function will parse tweets json into a pandas dataframe
+class TweetExtractor:
     
-    Return
-    ------
-    dataframe
-    """
     def _init_(self, tweets_list):
         
         self.tweets_list = tweets_list
@@ -185,9 +170,9 @@ def find_full_text(self)->list:
         text = ''
     return text
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     
-    _, tweet_list = read_json("covid19.json")
+    tweet_list = read_json("data/Economic_Twitter_Data.json")
     
-    tweet = TweetDfExtractor(tweet_list)
+    tweet = TweetExtractor(tweet_list)
     df = tweet.get_tweet_df()
