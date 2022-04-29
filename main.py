@@ -60,8 +60,28 @@ class PrepareData:
     return corpus_
 
 
-prepared_data = PrepareData(tweets_df)
-corpus = prepared_data.preprocess_data()
 
+#################
+# topic modeling
+#################
+
+word_list ,id2word,corpus=PrepareData.preprocess_data()
 if st.sidebar.checkbox("show bag of words"):
     st.write(corpus)
+
+# Build LDA model
+
+lda_model = gensim.models.ldamodel.LdaModel(corpus,
+                                           id2word=id2word,
+                                           num_topics=5, 
+                                           random_state=100,
+                                           update_every=1,
+                                           chunksize=100,
+                                           passes=10,
+                                           alpha='auto',
+                                           per_word_topics=True)
+
+if st.checkbox("show perplexity analysis"):
+    st.write(lda_model.log_perplexity(corpus))
+
+doc_lda = lda_model[corpus]
