@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from pprint import pprint
+from wordcloud import STOPWORDS,WordCloud
+import gensim
+from gensim.models import CoherenceModel
+from gensim import corpora
 import string
 import os
 import re
@@ -52,5 +56,12 @@ class PrepareData:
 
     #Create dictionary which contains Id and word 
     word_to_id = corpora.Dictionary(word_list)
-    corpus_1= [word_to_id.doc2bow(tweet) for tweet in word_list]
+    corpus_= [word_to_id.doc2bow(tweet) for tweet in word_list]
+    return corpus_
 
+
+prepared_data = PrepareData(tweets_df)
+corpus = prepared_data.preprocess_data()
+
+if st.sidebar.checkbox("show bag of words"):
+    st.write(corpus)
